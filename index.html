@@ -3,6 +3,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>أديم — منصة الاستشارات الجلدية الذكية</title>
@@ -2221,6 +2222,24 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 16px;
+}
+
+/* للجوال */
+@media (max-width: 600px) {
+  .doc-card {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .doc-actions button {
+    width: 100%; /* الأزرار تأخذ العرض كامل */
+  }
+}
+
+/* للتابلت */
+@media (max-width: 900px) {
+  #doctors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
     </style>
 
