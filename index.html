@@ -2231,7 +2231,7 @@
     font-size: 14px;
   }
   .doc-actions button {
-    width: 100%; /* الأزرار تأخذ العرض كامل */
+    width: 50%; /* الأزرار تأخذ العرض كامل */
   }
 }
 
@@ -2252,10 +2252,6 @@
         padding: 12px 20px !important;
     }
 
-    /* إخفاء روابط القائمة أو تحويلها لعمودية (يفضل إخفاؤها في الجوال) */
-    .nav-links, .nav-actions .btn-g {
-        display: none; 
-    }
 
     /* Hero Section */
     .hero {
@@ -2307,16 +2303,6 @@
         font-size: 32px !important;
     }
 
-    /* إخفاء مشهد الأوربيت (الكواكب) في الجوال لأنه يأخذ مساحة كبيرة */
-    .orbit-scene {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        height: 300px;
-        margin-top: 20px;
-    }
 }
 
 /* 💻 تعديلات خاصة بالأجهزة المتوسطة (Tablets) */
@@ -2361,13 +2347,7 @@
         font-size: 16px !important; /* تصغير كلمة أديم */
     }
 
-    /* 6. إصلاح منطقة الهيرو (النص والصورة التفاعلية) */
-    .hero {
-        padding-top: 120px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        text-align: center !important;
-    }
+
 
     .hero-content {
         order: 1 !important;
@@ -2375,7 +2355,6 @@
     }
 
     .orbit-scene {
-        order: 2 !important; /* وضع الصورة تحت النص */
         position: relative !important;
         margin: 40px auto 0 !important;
         transform: scale(0.6) !important; /* تصغير الصورة التفاعلية */
