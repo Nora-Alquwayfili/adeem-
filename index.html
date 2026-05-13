@@ -2329,53 +2329,92 @@
     transition: 0.3s;
 }
 
+/* 📱 التنسيق الموحد للجوال (768px فأقل) */
 @media (max-width: 768px) {
+    
+    /* 1. الحاوية الرئيسية للهيدر */
     #nav {
         padding: 10px 15px !important;
-        justify-content: space-between !important;
-    }
-
-    .menu-toggle { display: flex; } /* إظهار زر القائمة في الجوال */
-
-    .nav-logo { order: 1; }
-    .nav-actions { order: 2; gap: 5px !important; }
-
-    /* تحويل القائمة إلى منسدلة عمودية */
-    .nav-links {
-        display: none; /* مخفية افتراضياً */
-        position: absolute;
-        top: 60px;
-        right: 0;
-        left: 0;
-        background: var(--surface);
-        flex-direction: column !important;
-        padding: 20px !important;
-        gap: 15px !important;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        text-align: center;
-        border-bottom: 2px solid var(--p5);
-    }
-
-    /* كلاس يظهر القائمة عند الضغط */
-    .nav-links.show {
         display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important; /* يدفع اللوجو لليمين والباقي لليسار */
+        align-items: center !important;
+    }
+
+    /* اللوجو في أقصى اليمين */
+    .nav-logo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        order: 1 !important;
+    }
+
+    /* الأزرار والمنيو في أقصى اليسار */
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        order: 2 !important;
+        flex-direction: row-reverse !important; /* ليكون زر المنيو في الزاوية تماماً */
     }
 
     .nav-actions .btn {
         padding: 6px 10px !important;
         font-size: 10px !important;
         white-space: nowrap !important;
+        border-radius: 50px !important;
     }
 
-    /* حذف الكواكب في الجوال لضمان التناسق التام */
-    .orbit-scene {
-        display: none !important;
+    .menu-toggle {
+        display: flex !important; /* إظهار الخطوط الثلاثة */
     }
 
-    .hero {
-        padding-top: 100px !important;
-        text-align: center !important;
+    /* 2. الهيرو وكل المحتوى (لليمين) */
+    .hero, .section, .page-hero, .page-content, .cta-band {
+        padding: 80px 24px 40px !important;
+        text-align: right !important; /* محاذاة النص لليمين */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important; /* رص العناصر لليمين */
     }
+
+    .hero-content {
+        max-width: 100% !important;
+    }
+
+    .hero-btns, .store-btns {
+        justify-content: flex-start !important; /* الأزرار تبدأ من اليمين */
+        display: flex !important;
+        gap: 10px;
+    }
+
+    /* 3. القائمة المنسدلة */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 15px !important;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .nav-links.show { display: flex !important; }
+
+    /* 4. إخفاء الزوائد وتعديل الشبكات */
+    .orbit-scene, .steps::before { display: none !important; }
+
+    .srv-grid, .steps, .testi-grid, .doctors-grid, .ai-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .hero-h1 { font-size: 28px !important; }
 }
 
         @media (max-width: 768px) {
