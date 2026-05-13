@@ -2325,6 +2325,75 @@
         grid-template-columns: repeat(2, 1fr) !important; /* عمودين */
     }
 }
+
+        /* هذا هو القسم الخاص بتعديلات الجوال */
+@media (max-width: 768px) {
+    
+    /* أولاً: تعديلات شريط التنقل (Nav) */
+    #nav {
+        padding: 10px 20px; 
+        flex-wrap: wrap;    
+    }
+    
+    .nav-links {
+        display: none; /* إخفاء الروابط النصية لتوفير مساحة */
+    }
+
+    .nav-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 5px;
+    }
+
+    .btn {
+        padding: 8px 15px; 
+        font-size: 12px;
+    }
+
+    /* ثانياً: تعديلات منطقة الـ Hero والصورة التفاعلية */
+    .hero {
+        flex-direction: column; /* جعل العناصر تحت بعضها */
+        padding: 100px 20px 40px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 40px; 
+    }
+
+    .orbit-scene {
+        position: relative; /* تغييرها من مطلق إلى نسبي لتظهر تحت الكلام */
+        left: auto;
+        top: auto;
+        transform: scale(0.65); /* تصغير الحجم ليناسب عرض الجوال */
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+        order: 2; /* التأكد من ظهورها بعد النص */
+    }
+    
+    /* تصغير الدوائر التفاعلية لتناسب الجوال */
+    .orbit-ring:nth-child(1) { width: 220px; height: 220px; }
+    .orbit-ring:nth-child(2) { width: 300px; height: 300px; }
+    
+    /* تحديث مسار حركة الأيقونات لتناسب الحجم الجديد */
+    @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(110px) rotate(0deg) }
+        100% { transform: rotate(360deg) translateX(110px) rotate(-360deg) }
+    }
+    @keyframes orbit2 {
+        0% { transform: rotate(90deg) translateX(150px) rotate(-90deg) }
+        100% { transform: rotate(450deg) translateX(150px) rotate(-450deg) }
+    }
+    @keyframes orbit3 {
+        0% { transform: rotate(200deg) translateX(130px) rotate(-200deg) }
+        100% { transform: rotate(560deg) translateX(130px) rotate(-560deg) }
+    }
+}
     </style>
 
 </head>
