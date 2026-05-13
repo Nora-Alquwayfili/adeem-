@@ -2326,74 +2326,68 @@
     }
 }
 
-        /* هذا هو القسم الخاص بتعديلات الجوال */
-@media (max-width: 768px) {
-    
-    /* أولاً: تعديلات شريط التنقل (Nav) */
+   @media (max-width: 768px) {
+    /* 1. إصلاح شريط التنقل بالكامل */
     #nav {
-        padding: 10px 20px; 
-        flex-wrap: wrap;    
+        padding: 10px 15px !important; /* تقليل الفراغات الجانبية */
+        flex-direction: row !important; /* إبقاء العناصر بجانب بعضها */
+        justify-content: space-between !important;
+        height: auto !important;
     }
-    
+
+    /* 2. إخفاء الروابط النصية فقط (الاستشارات، الصيدلية..) لتوفير مساحة */
     .nav-links {
-        display: none; /* إخفاء الروابط النصية لتوفير مساحة */
+        display: none !important;
     }
 
+    /* 3. ترتيب الأزرار (ابدأ مجاناً وتسجيل الدخول) */
     .nav-actions {
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-        gap: 5px;
+        display: flex !important;
+        gap: 8px !important;
+        flex: 1;
+        justify-content: flex-start; /* دفع الأزرار لليمين بجانب اللوجو */
     }
 
-    .btn {
-        padding: 8px 15px; 
-        font-size: 12px;
+    /* 4. تصغير حجم الأزرار لتناسب عرض الجوال */
+    .nav-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+        white-space: nowrap !important; /* منع النص من النزول لسطر جديد */
+        min-width: max-content !important;
     }
 
-    /* ثانياً: تعديلات منطقة الـ Hero والصورة التفاعلية */
+    /* 5. لوجو المنصة */
+    .nav-logo {
+        gap: 5px !important;
+    }
+    .nav-logo-text {
+        font-size: 16px !important; /* تصغير كلمة أديم */
+    }
+
+    /* 6. إصلاح منطقة الهيرو (النص والصورة التفاعلية) */
     .hero {
-        flex-direction: column; /* جعل العناصر تحت بعضها */
-        padding: 100px 20px 40px;
-        text-align: center;
-        display: flex;
-        align-items: center;
+        padding-top: 120px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        text-align: center !important;
     }
 
     .hero-content {
-        max-width: 100%;
-        margin-bottom: 40px; 
+        order: 1 !important;
+        max-width: 100% !important;
     }
 
     .orbit-scene {
-        position: relative; /* تغييرها من مطلق إلى نسبي لتظهر تحت الكلام */
-        left: auto;
-        top: auto;
-        transform: scale(0.65); /* تصغير الحجم ليناسب عرض الجوال */
-        margin: 0 auto;
-        width: 300px;
-        height: 300px;
-        order: 2; /* التأكد من ظهورها بعد النص */
-    }
-    
-    /* تصغير الدوائر التفاعلية لتناسب الجوال */
-    .orbit-ring:nth-child(1) { width: 220px; height: 220px; }
-    .orbit-ring:nth-child(2) { width: 300px; height: 300px; }
-    
-    /* تحديث مسار حركة الأيقونات لتناسب الحجم الجديد */
-    @keyframes orbit {
-        0% { transform: rotate(0deg) translateX(110px) rotate(0deg) }
-        100% { transform: rotate(360deg) translateX(110px) rotate(-360deg) }
-    }
-    @keyframes orbit2 {
-        0% { transform: rotate(90deg) translateX(150px) rotate(-90deg) }
-        100% { transform: rotate(450deg) translateX(150px) rotate(-450deg) }
-    }
-    @keyframes orbit3 {
-        0% { transform: rotate(200deg) translateX(130px) rotate(-200deg) }
-        100% { transform: rotate(560deg) translateX(130px) rotate(-560deg) }
+        order: 2 !important; /* وضع الصورة تحت النص */
+        position: relative !important;
+        margin: 40px auto 0 !important;
+        transform: scale(0.6) !important; /* تصغير الصورة التفاعلية */
+        left: 0 !important;
+        top: 0 !important;
+        display: block !important;
     }
 }
+        
     </style>
 
 </head>
