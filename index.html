@@ -2440,7 +2440,71 @@
         0% { transform: rotate(0deg) translateX(110px) rotate(0deg) }
         100% { transform: rotate(360deg) translateX(110px) rotate(-360deg) }
     }
-}     
+}
+
+        /* تنسيق زر القائمة - مخفي في اللابتوب */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    z-index: 1001;
+}
+.menu-toggle .bar {
+    width: 22px;
+    height: 2px;
+    background-color: var(--p1);
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    #nav {
+        padding: 10px 15px !important;
+        justify-content: space-between !important;
+    }
+
+    .menu-toggle { display: flex; } /* إظهار زر القائمة في الجوال */
+
+    .nav-logo { order: 1; }
+    .nav-actions { order: 2; gap: 5px !important; }
+
+    /* تحويل القائمة إلى منسدلة عمودية */
+    .nav-links {
+        display: none; /* مخفية افتراضياً */
+        position: absolute;
+        top: 60px;
+        right: 0;
+        left: 0;
+        background: var(--surface);
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 15px !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        text-align: center;
+        border-bottom: 2px solid var(--p5);
+    }
+
+    /* كلاس يظهر القائمة عند الضغط */
+    .nav-links.show {
+        display: flex !important;
+    }
+
+    .nav-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 10px !important;
+        white-space: nowrap !important;
+    }
+
+    /* حذف الكواكب في الجوال لضمان التناسق التام */
+    .orbit-scene {
+        display: none !important;
+    }
+
+    .hero {
+        padding-top: 100px !important;
+        text-align: center !important;
+    }
+}
     </style>
 
 </head>
@@ -2461,6 +2525,11 @@
                 <circle cx="50" cy="44" r="4.5" fill="#5B4FCF" />
             </svg>
             <span class="nav-logo-text">أديم</span>
+            <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
         </div>
         <div class="nav-links">
             <a onclick="goPage('consult')" data-page="consult">الاستشارات</a>
@@ -3370,7 +3439,10 @@ function closeModal(id){document.getElementById(id).style.display='none';}
     </div>`;
     if (t.type === 'chat') return `<div class="ai-tool-demo">💬 مساعد AI جاهز للتحدث</div>`;
 }
-
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+}
 </script>
 
 </body>
