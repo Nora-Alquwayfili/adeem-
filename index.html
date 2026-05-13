@@ -2231,7 +2231,7 @@
     font-size: 14px;
   }
   .doc-actions button {
-    width: 50%; /* الأزرار تأخذ العرض كامل */
+    width: 20%; /* الأزرار تأخذ العرض كامل */
   }
 }
 
@@ -2376,6 +2376,83 @@
         padding-top: 100px !important;
         text-align: center !important;
     }
+}
+
+        @media (max-width: 768px) {
+    /* الحاوية الرئيسية */
+    #nav {
+        padding: 10px 12px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important; /* توزيع العناصر بين الطرفين */
+        align-items: center !important;
+    }
+
+    /* 1. مجموعة اليمين: اللوجو وكلمة أديم */
+    .nav-logo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        order: 1 !important; /* البقاء في اليمين */
+    }
+
+    .nav-logo svg {
+        width: 26px !important;
+        height: auto !important;
+    }
+
+    .nav-logo-text {
+        font-size: 15px !important;
+        font-weight: 800 !important;
+    }
+
+    /* 2. مجموعة اليسار: زر القائمة + الأزرار */
+    /* ملاحظة: سنقوم بنقل زر القائمة ليكون بجانب الأزرار في اليسار */
+    
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        order: 2 !important; /* الانتقال لجهة اليسار */
+        flex-direction: row-reverse !important; /* ليكون زر القائمة هو الأخير في الزاوية */
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 5px !important; /* مسافة بسيطة بينه وبين الأزرار */
+    }
+
+    /* تصغير الأزرار */
+    .nav-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 10px !important;
+        white-space: nowrap !important;
+        border-radius: 50px !important;
+    }
+
+    /* 3. القائمة المنسدلة (تظهر تحت الشريط بالكامل) */
+    .nav-links {
+        display: none; 
+        position: absolute;
+        top: 65px; /* تظهر تحت الناف بار */
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 15px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 1000;
+        text-align: center;
+        border-bottom: 2px solid var(--p5);
+    }
+
+    .nav-links.show {
+        display: flex !important;
+    }
+
+    /* إخفاء العناصر غير الضرورية */
+    .orbit-scene { display: none !important; }
 }
     </style>
 
