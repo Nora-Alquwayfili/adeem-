@@ -3157,6 +3157,12 @@ let chatHistory = [];
             document.querySelectorAll('.nav-links a').forEach(a => {
                 a.classList.toggle('active', a.dataset.page === id);
             });
+
+              // 🌟 السطر المطلوب: إغلاق القائمة فوراً
+    // هذا السطر يضمن أن القائمة تختفي بمجرد الضغط على أي رابط
+           if (document.querySelector('.nav-links')) {
+              document.querySelector('.nav-links').classList.remove('show');
+           }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (id === 'consult') renderDoctors();
             if (id === 'pharmacy') renderProducts();
