@@ -3157,11 +3157,6 @@ let chatHistory = [];
             document.querySelectorAll('.nav-links a').forEach(a => {
                 a.classList.toggle('active', a.dataset.page === id);
             });
-            // ✅ 3. إغلاق القائمة المنسدلة فوراً عند اختيار أي صفحة
-    const navLinks = document.querySelector('.nav-links');
-    if (navLinks) {
-        navLinks.classList.remove('show');
-    }
 
     // 4. العودة لأعلى الصفحة بسلاسة
     window.scrollTo({ top: 0, behavior: 'smooth' });
