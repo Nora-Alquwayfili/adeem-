@@ -2406,7 +2406,7 @@
     .orbit-scene { display: none !important; }
 }
 
-        @media (max-width: 768px) {
+ @media (max-width: 768px) {
     /* الحاوية الرئيسية */
     #nav {
         padding: 10px 12px !important;
@@ -2461,28 +2461,48 @@
     /* 3. القائمة المنسدلة (تظهر تحت الشريط بالكامل) */
   /* داخل @media (max-width: 768px) */
 
- .nav-links {
-        display: none; 
+.nav-links {
+        display: none; /* مهم جداً: لكي لا تظهر إلا عند الضغط */
         position: absolute;
-        top: 65px; /* تظهر تحت الناف بار */
+        top: 65px; 
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.98);
+        background: #ffffff !important; /* لون أبيض صريح وليس شفافاً */
         flex-direction: column !important;
         padding: 20px !important;
         gap: 15px !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        z-index: 1000;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        z-index: 9999 !important; /* رقم عالي جداً لتظهر فوق صور الدكاترة */
         text-align: center;
-        border-bottom: 2px solid var(--p5);
     }
 
     .nav-links.show {
-        display: flex !important;
+        display: flex !important; /* لتظهر عند الضغط فقط */
     }
-
     /* إخفاء العناصر غير الضرورية */
     .orbit-scene { display: none !important; }
+}
+
+@media (max-width: 768px) {
+    /* 1. ضبط محاذاة العناوين والنصوص لتكون لليمين بدلاً من الوسط */
+    .hero-content, 
+    .section-header, 
+    .doctor-info, 
+    .product-card,
+    .page {
+        text-align: right !important; /* يجبر النص على اليمين */
+        align-items: flex-start !important; /* لضمان ترتيب العناصر داخل Flex لليمين */
+    }
+
+    /* 2. إذا كان الـ Hero يحتوي على أزرار، نجعلها تبدأ من اليمين أيضاً */
+    .hero-btns {
+        justify-content: flex-start !important;
+    }
+
+    /* 3. التأكد من أن الفقرات لا تأخذ اتجاه التوسط */
+    p, h1, h2, h3 {
+        text-align: right !important;
+    }
 }
     </style>
 
@@ -2492,11 +2512,11 @@
 
     <!-- ══ NAV ══════════════════════════════════════════════════════ -->
 
-    <nav id="nav">
+   <nav id="nav">
+    <div class="nav-header-main"> 
         <div class="nav-logo" onclick="goPage('home')">
             <svg width="34" height="40" viewBox="0 0 100 115" fill="none">
-                <path d="M50 6 L88 22 L88 64 Q88 90 50 108 Q12 90 12 64 L12 22 Z" stroke="#5B4FCF" stroke-width="5"
-                    fill="none" stroke-linejoin="round" />
+                <path d="M50 6 L88 22 L88 64 Q88 90 50 108 Q12 90 12 64 L12 22 Z" stroke="#5B4FCF" stroke-width="5" fill="none" stroke-linejoin="round" />
                 <polygon points="50,30 62,37 62,51 50,58 38,51 38,37" stroke="#5B4FCF" stroke-width="3.5" fill="none" />
                 <polygon points="50,58 62,65 62,79 50,86 38,79 38,65" stroke="#5B4FCF" stroke-width="3.5" fill="none" />
                 <polygon points="28,30 40,37 40,51 28,58 16,51 16,37" stroke="#5B4FCF" stroke-width="3" fill="none" />
@@ -2504,24 +2524,27 @@
                 <circle cx="50" cy="44" r="4.5" fill="#5B4FCF" />
             </svg>
             <span class="nav-logo-text">أديم</span>
-            <div class="menu-toggle" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-</div>
         </div>
-        <div class="nav-links">
-            <a onclick="goPage('consult')" data-page="consult">الاستشارات</a>
-            <a onclick="goPage('pharmacy')" data-page="pharmacy"> الصيدلية</a>
-            <a onclick="goPage('lab')" data-page="lab">المختبر </a>
-            <a onclick="goPage('ai')" data-page="ai">الذكاء الاصطناعي</a>
-        </div>
-        <div class="nav-actions">
-            <button class="btn btn-g" onclick="openAuth('login')">تسجيل الدخول مستفيد خدمة</button>
-            <button class="btn btn-p" onclick="openAuth('register')">ابدأ مجانًا ←</button>
-        </div>
-    </nav>
 
+        <div class="menu-toggle" onclick="toggleMenu(event)">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a onclick="goPage('consult')" data-page="consult">الاستشارات</a>
+        <a onclick="goPage('pharmacy')" data-page="pharmacy">الصيدلية</a>
+        <a onclick="goPage('lab')" data-page="lab">المختبر</a>
+        <a onclick="goPage('ai')" data-page="ai">الذكاء الاصطناعي</a>
+    </div>
+
+    <div class="nav-actions">
+        <button class="btn btn-g" onclick="openAuth('login')">تسجيل الدخول</button>
+        <button class="btn btn-p" onclick="openAuth('register')">ابدأ مجانًا ←</button>
+    </div>
+</nav>
     <!-- ══════════════════════════════════════════════════════════════ -->
 
     <!-- HOME PAGE -->
@@ -3152,24 +3175,30 @@ let chatHistory = [];
 
         // ══ NAVIGATION ════════════════════════════════════════════════
           function goPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + id).classList.add('active');
-            document.querySelectorAll('.nav-links a').forEach(a => {
-                a.classList.toggle('active', a.dataset.page === id);
-            });
+    // 1. التنقل بين الصفحات (الكود الأصلي الخاص بك)
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const targetPage = document.getElementById('page-' + id);
+    if (targetPage) targetPage.classList.add('active');
 
-              // 🌟 السطر المطلوب: إغلاق القائمة فوراً
-    // هذا السطر يضمن أن القائمة تختفي بمجرد الضغط على أي رابط
-           if (document.querySelector('.nav-links')) {
-              document.querySelector('.nav-links').classList.remove('show');
-           }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (id === 'consult') renderDoctors();
-            if (id === 'pharmacy') renderProducts();
-            if (id === 'lab') renderLabs();
-            if (id === 'ai') renderAITools();
-            setTimeout(initReveal, 100);
-        }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === id);
+    });
+
+    // 2. إغلاق القائمة فقط إذا كانت مفتوحة (هذا هو التعديل)
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks && navLinks.classList.contains('show')) {
+        navLinks.classList.remove('show');
+    }
+
+    // 3. بقية العمليات (تشغيل الدوال)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'consult') renderDoctors();
+    if (id === 'pharmacy') renderProducts();
+    if (id === 'lab') renderLabs();
+    if (id === 'ai') renderAITools();
+    
+    setTimeout(initReveal, 100);
+}
 
         // ══ SCROLL & NAV ══════════════════════════════════════════════
         window.addEventListener('scroll', () => {
@@ -3426,7 +3455,9 @@ function closeModal(id){document.getElementById(id).style.display='none';}
 }
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('show');
+    if (navLinks) {
+        navLinks.classList.toggle('show');
+    }
 }
 </script>
 
