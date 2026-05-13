@@ -3156,6 +3156,7 @@ let chatHistory = [];
             document.getElementById('page-' + id).classList.add('active');
             document.querySelectorAll('.nav-links a').forEach(a => {
                 a.classList.toggle('active', a.dataset.page === id);
+            document.querySelector('.nav-links').classList.remove('show');
             });
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (id === 'consult') renderDoctors();
