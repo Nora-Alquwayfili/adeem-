@@ -3156,9 +3156,15 @@ let chatHistory = [];
             document.getElementById('page-' + id).classList.add('active');
             document.querySelectorAll('.nav-links a').forEach(a => {
                 a.classList.toggle('active', a.dataset.page === id);
-            document.querySelector('.nav-links').classList.remove('show');
             });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // ✅ 3. إغلاق القائمة المنسدلة فوراً عند اختيار أي صفحة
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+        navLinks.classList.remove('show');
+    }
+
+    // 4. العودة لأعلى الصفحة بسلاسة
+    window.scrollTo({ top: 0, behavior: 'smooth' });
             if (id === 'consult') renderDoctors();
             if (id === 'pharmacy') renderProducts();
             if (id === 'lab') renderLabs();
