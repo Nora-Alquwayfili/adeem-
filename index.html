@@ -3151,15 +3151,13 @@ let currentLabTest = null;
 let chatHistory = [];
 
         // ══ NAVIGATION ════════════════════════════════════════════════
-        function goPage(id) {
+          function goPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + id).classList.add('active');
             document.querySelectorAll('.nav-links a').forEach(a => {
                 a.classList.toggle('active', a.dataset.page === id);
             });
-
-    // 4. العودة لأعلى الصفحة بسلاسة
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             if (id === 'consult') renderDoctors();
             if (id === 'pharmacy') renderProducts();
             if (id === 'lab') renderLabs();
