@@ -347,7 +347,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 16px 64px;
-            background: rgba(244, 242, 255, .9);
+            background: #ffffff;
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(224, 216, 255, .5);
             transition: all .3s
@@ -2448,6 +2448,7 @@
     .menu-toggle {
         display: flex !important;
         margin-right: 5px !important; /* مسافة بسيطة بينه وبين الأزرار */
+        margin-top: 5px !important; /* لإنزال المنيو قليلاً */
     }
 
     /* تصغير الأزرار */
@@ -2504,6 +2505,150 @@
         text-align: right !important;
     }
 }
+
+/* الحاوية الكبرى للأسئلة */
+.faq-wrap {
+    display: flex;
+    flex-direction: column; /* يضمن أن الأسئلة تترتب رأسياً */
+    gap: 15px;
+    max-width: 800px; /* يمكنك زيادة العرض ليعطيك مساحة أكبر */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* العنصر الواحد (السؤال + الجواب) */
+.faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px; /* زوايا منحنية تعطي شكل أجمل */
+    overflow: hidden; /* لمنع خروج النص عن الإطار */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%; /* يأخذ كامل عرض الحاوية */
+}
+
+/* التنسيق عند النقر (نشط) */
+.faq-item.active {
+    border-color: var(--p2);
+    box-shadow: 0 5px 15px rgba(91, 79, 207, 0.1);
+}
+
+/* عنوان السؤال */
+.faq-q {
+    padding: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--ink);
+}
+
+/* منطقة الجواب */
+.faq-a {
+    max-height: 0; /* مخفي في البداية */
+    overflow: hidden;
+    transition: all 0.3s ease-out; /* حركة انسيابية للفتح */
+    padding: 0 20px; /* بادينج جانبي فقط وهو مغلق */
+    color: var(--ink3);
+    line-height: 1.7;
+    background: #fcfcff;
+}
+
+/* عند فتح السؤال */
+.faq-item.active .faq-a {
+    max-height: 500px; /* رقم كافٍ ليظهر النص كاملاً */
+    padding: 10px 20px 20px 20px; /* يظهر البادينج عند الفتح */
+}
+
+/* أيقونة الزائد */
+.faq-ic {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+    color: var(--p2);
+}
+
+.faq-item.active .faq-ic {
+    transform: rotate(45deg); /* تتحول لـ × عند الفتح */
+}
+
+
+
+
+
+
+/* الإعدادات العامة (الكمبيوتر) */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px; /* نفس مسافتك القديمة */
+    cursor: pointer;
+}
+
+/* تنسيق الصورة لتأخذ حجم الرسمة القديمة */
+.main-logo-img {
+    width: 60px; /* حجم تقريبي للرسمة القديمة */
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    #nav {
+        padding: 10px 12px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .nav-logo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important; /* نفس مسافتك القديمة في الجوال */
+        order: 1 !important;
+    }
+
+    /* تعديل حجم الصورة في الجوال لتناسب مقاس الـ SVG القديم */
+    .main-logo-img {
+        width: 40px !important; /* نفس مقاس الـ SVG اللي كان عندك */
+        height: auto !important;
+    }
+
+    
+    .nav-logo-text {
+        font-size: 15px !important;
+        font-weight: 800 !important;
+    }
+}
+
+/* التنسيق الأساسي للحاوية التي تجمع اللوجو والمنيو */
+.nav-header-main {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important; /* المسافة بين الشعار والمنيو */
+    
+    /* هذا السطر هو السحر: يخبر المتصفح أن يرتب العناصر من البداية للنهاية 
+       حتى لو كان الموقع عربياً، فيظهر الشعار (العنصر الأول) يميناً */
+    flex-direction: row-reverse !important; 
+}
+
+/* في الجوال */
+@media (max-width: 768px) {
+    #nav {
+        display: flex !important;
+        justify-content: space-between !important; /* يدفع مجموعة اللوجو لليمين والأزرار لليسار */
+        padding: 10px 15px !important;
+    }
+
+    .nav-header-main {
+        order: 1; /* يضمن بقاء المجموعة في اليمين */
+    }
+
+    .nav-actions {
+        order: 2; /* يضمن بقاء الأزرار في اليسار */
+    }
+}
+
     </style>
 
 </head>
@@ -2515,16 +2660,9 @@
    <nav id="nav">
     <div class="nav-header-main"> 
         <div class="nav-logo" onclick="goPage('home')">
-            <svg width="34" height="40" viewBox="0 0 100 115" fill="none">
-                <path d="M50 6 L88 22 L88 64 Q88 90 50 108 Q12 90 12 64 L12 22 Z" stroke="#5B4FCF" stroke-width="5" fill="none" stroke-linejoin="round" />
-                <polygon points="50,30 62,37 62,51 50,58 38,51 38,37" stroke="#5B4FCF" stroke-width="3.5" fill="none" />
-                <polygon points="50,58 62,65 62,79 50,86 38,79 38,65" stroke="#5B4FCF" stroke-width="3.5" fill="none" />
-                <polygon points="28,30 40,37 40,51 28,58 16,51 16,37" stroke="#5B4FCF" stroke-width="3" fill="none" />
-                <polygon points="72,30 84,37 84,51 72,58 60,51 60,37" stroke="#5B4FCF" stroke-width="3" fill="none" />
-                <circle cx="50" cy="44" r="4.5" fill="#5B4FCF" />
-            </svg>
-            <span class="nav-logo-text">أديم</span>
-        </div>
+              <img src="logo.png" alt="أديم" class="main-logo-img">
+    </div>
+  
 
         <div class="menu-toggle" onclick="toggleMenu(event)">
             <div class="bar"></div>
@@ -2533,6 +2671,11 @@
         </div>
     </div>
 
+
+
+
+
+    
     <div class="nav-links">
         <a onclick="goPage('consult')" data-page="consult">الاستشارات</a>
         <a onclick="goPage('pharmacy')" data-page="pharmacy">الصيدلية</a>
@@ -2591,12 +2734,8 @@
                 </div>
                 <div class="stats">
     <div class="stat">
-        <span class="value">+500</span>
-        <span class="label">طبيب معتمد</span>
     </div>
     <div class="stat">
-        <span class="value">95%</span>
-        <span class="label">نسبة الرضا</span>
     </div>
 </div>
             </div>
@@ -2791,17 +2930,7 @@
             <div class="phone-float reveal d3">
                 <div class="phone-shell">
                     <div class="phone-inner">
-                        <svg viewBox="0 0 100 115" fill="none">
-                            <path d="M50 6 L88 22 L88 64 Q88 90 50 108 Q12 90 12 64 L12 22 Z"
-                                stroke="rgba(91,79,207,0.7)" stroke-width="4.5" fill="rgba(91,79,207,0.08)"
-                                stroke-linejoin="round" />
-                            <polygon points="50,30 62,37 62,51 50,58 38,51 38,37" stroke="rgba(91,79,207,0.6)"
-                                stroke-width="3.5" fill="none" />
-                            <polygon points="50,58 62,65 62,79 50,86 38,79 38,65" stroke="rgba(91,79,207,0.6)"
-                                stroke-width="3.5" fill="none" />
-                            <circle cx="50" cy="44" r="5" fill="rgba(91,79,207,0.8)" />
-                        </svg>
-                        <span>أديم</span>
+                                     <img src="logo.png" alt="أديم" class="main-logo-img">
                     </div>
                 </div>
             </div>
@@ -3458,6 +3587,18 @@ function toggleMenu() {
     if (navLinks) {
         navLinks.classList.toggle('show');
     }
+}
+
+function toggleFaq(element) {
+    // إغلاق أي سؤال آخر مفتوح (اختياري - إذا أردت فتح سؤال واحد فقط في كل مرة)
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== element) {
+            item.classList.remove('active');
+        }
+    });
+
+    // تبديل حالة السؤال المضغطوط عليه (فتح/إغلاق)
+    element.classList.toggle('active');
 }
 </script>
 
