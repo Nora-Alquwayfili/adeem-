@@ -2241,6 +2241,90 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
+        /* 📱 تعديلات خاصة بالجوال والأجهزة الصغيرة */
+@media (max-width: 768px) {
+    /* تقليل الهوامش الجانبية الكبيرة */
+    #nav, .hero, .section, .page-hero, .page-content, .cta-band {
+        padding: 20px 24px !important;
+    }
+
+    #nav {
+        padding: 12px 20px !important;
+    }
+
+    /* إخفاء روابط القائمة أو تحويلها لعمودية (يفضل إخفاؤها في الجوال) */
+    .nav-links, .nav-actions .btn-g {
+        display: none; 
+    }
+
+    /* Hero Section */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 100px !important;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    /* تحويل الشبكات (Grids) من صفوف إلى أعمدة */
+    .srv-grid, .steps, .testi-grid, .doctors-grid, .faq-wrap {
+        grid-template-columns: 1fr !important; /* عمود واحد فقط */
+        gap: 16px;
+    }
+
+    .ai-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* إصلاح قسم الخطوات (Steps) */
+    .steps::before {
+        display: none; /* إخفاء الخط الواصل بين الخطوات */
+    }
+
+    /* إصلاح قسم التحميل (App CTA) */
+    .cta-band {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+
+    .store-btns {
+        justify-content: center;
+    }
+
+    .phone-float {
+        margin: 0 auto;
+    }
+
+    /* تصغير حجم الخطوط الكبيرة */
+    .hero-h1 {
+        font-size: 32px !important;
+    }
+
+    /* إخفاء مشهد الأوربيت (الكواكب) في الجوال لأنه يأخذ مساحة كبيرة */
+    .orbit-scene {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 300px;
+        margin-top: 20px;
+    }
+}
+
+/* 💻 تعديلات خاصة بالأجهزة المتوسطة (Tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .srv-grid, .testi-grid, .doctors-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* عمودين */
+    }
+}
     </style>
 
 </head>
