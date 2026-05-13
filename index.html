@@ -2461,31 +2461,25 @@
     /* 3. القائمة المنسدلة (تظهر تحت الشريط بالكامل) */
   /* داخل @media (max-width: 768px) */
 
-.nav-links {
-    display: none; /* إخفاء افتراضي */
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    flex-direction: column !important;
-    padding: 20px !important;
-    gap: 15px !important;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    z-index: 1000;
-    
-    /* أضف هذه السطور للحركة الانسيابية */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(-10px);
-}
+ .nav-links {
+        display: none; 
+        position: absolute;
+        top: 65px; /* تظهر تحت الناف بار */
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 15px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 1000;
+        text-align: center;
+        border-bottom: 2px solid var(--p5);
+    }
 
-.nav-links.show {
-    display: flex !important;
-    opacity: 1;
-    transform: translateY(0);
-}
+    .nav-links.show {
+        display: flex !important;
+    }
 
     /* إخفاء العناصر غير الضرورية */
     .orbit-scene { display: none !important; }
