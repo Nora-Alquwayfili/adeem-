@@ -2363,7 +2363,84 @@
         display: block !important;
     }
 }
-        
+   @media (max-width: 768px) {
+    /* 1. هيكلة الشريط العلوي */
+    #nav {
+        padding: 10px 12px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 5px !important;
+    }
+
+    /* 2. تصغير اللوجو */
+    .nav-logo-text {
+        font-size: 14px !important;
+        font-weight: 900 !important;
+    }
+    
+    /* 3. إخفاء الروابط النصية لتوسيع المساحة للأزرار المهمة */
+    .nav-links {
+        display: none !important; /* يمكننا إضافة زر "قائمة" مستقبلاً إذا أردت */
+    }
+
+    /* 4. ترتيب أزرار "ابدأ" و "تسجيل الدخول" في سطر واحد */
+    .nav-actions {
+        display: flex !important;
+        gap: 5px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .nav-actions .btn {
+        padding: 6px 8px !important;
+        font-size: 10px !important; /* تصغير الخط لضمان ظهورهم بجانب بعض */
+        white-space: nowrap !important;
+        border-radius: 30px !important;
+        min-width: auto !important;
+    }
+
+    /* 5. ترتيب منطقة النص والصورة التفاعلية */
+    .hero {
+        display: flex !important;
+        flex-direction: column !important; /* ترتيب عمودي */
+        align-items: center !important;
+        text-align: center !important;
+        padding-top: 100px !important;
+    }
+
+    .hero-content {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .hero-h1 {
+        font-size: 28px !important; /* تصغير العنوان ليناسب الشاشة */
+    }
+
+    /* 6. إظهار "الكواكب" التفاعلية وتصغيرها لأقصى حد */
+    .orbit-scene {
+        position: relative !important;
+        margin-top: 20px !important;
+        left: auto !important;
+        top: auto !important;
+        transform: scale(0.45) !important; /* تصغير كبير جداً كما طلبت */
+        width: 320px !important;
+        height: 320px !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* تعديل المسافات للدوائر لتبقى متناسقة مع التصغير */
+    .orbit-ring:nth-child(1) { width: 220px; height: 220px; }
+    .orbit-ring:nth-child(2) { width: 300px; height: 300px; }
+
+    /* تعديل الأنيميشن ليبقى حول المركز المصغر */
+    @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(110px) rotate(0deg) }
+        100% { transform: rotate(360deg) translateX(110px) rotate(-360deg) }
+    }
+}     
     </style>
 
 </head>
